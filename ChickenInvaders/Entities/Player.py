@@ -10,5 +10,16 @@ class Player(Character):
         self.weapon_img = item.WEAPON_NEUTRON
         self.mask = pygame.mask.from_surface(self.character_img)
         self.max_health = health
+    def move_weapons(self,vel,objs):
+        self.cooldown()
+        for weapon in self.weapons:
+            weapon.move(vel)
+            if weapon.off_screen(item.HEIGHT):
+                self.weapons.remove(weapon)
+            else:
+                for obj in objs:
+                    if weapon.collision(obj):
+                        objs.remove(obj)
+                        self.weapons.remove(weapon)
 
 

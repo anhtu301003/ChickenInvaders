@@ -13,7 +13,10 @@ def oneplayer():
     FPS = 60
     player = Pl.Player(300, 650)
     player_vel = 5
+    hero_weapon_vel = 17
+    enemy_weapon_vel = 4
 
+    lives = 1
     enemies = []
     wave_length = 5
     enemy_vel = 1
@@ -30,10 +33,13 @@ def oneplayer():
     while running:
         clock.tick(FPS)
 
+        if lives <= 0:
+            running = False
+
         if len(enemies) == 0:
             wave_length += 5
             for i in range(wave_length):
-                en = En.Enemy(random.randrange(50, item.WIDTH - 100), 200, random.choice(["chicken1", "chicken2", "chicken3"]))
+                en = En.Enemy(random.randrange(50, item.WIDTH - 100), 0, random.choice(["chicken1", "chicken2", "chicken3"]))
                 enemies.append(en)
 
         for event in pygame.event.get():
@@ -48,7 +54,16 @@ def oneplayer():
             player.y -= player_vel
         if keys[pygame.K_s] and player.y + player_vel + player.get_height() < item.HEIGHT:
             player.y += player_vel
+        if keys[pygame.K_SPACE]:
+            player.shoot()
 
         for en in enemies:
             en.move(enemy_vel)
+            en.move_weapons(enemy_weapon_vel,player)
+            en.shoot()
+            if en.x == player.x or en.y == player.y:
+                lives -= 1
+                enemies.remove(en)
+        player.move_weapons(-hero_weapon_vel, enemies)
+
         redraw_windowoneplayer()
