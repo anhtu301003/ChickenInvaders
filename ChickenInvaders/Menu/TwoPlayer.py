@@ -1,7 +1,7 @@
 import pygame,sys
-from ButtonMenu import Button
-import mainscreen
-import importitem as item
+from ChickenInvaders.Menu.ButtonMenu import Button
+import ChickenInvaders.Menu.mainscreen as mainscreen
+import ChickenInvaders.importitem as item
 
 def twoplayer():
     while True:

@@ -1,7 +1,6 @@
-import pygame
-import sys
-from ButtonMenu import Button
-import importitem as item
+import pygame,sys
+from ChickenInvaders.Menu.ButtonMenu import Button
+import ChickenInvaders.importitem as item
 
 pygame.init()
 
@@ -13,13 +12,20 @@ pygame.display.set_caption("Menu")
 
 
 def main_menu(oneplayer_function, twoplayer_function):
-    while True:
+
+    def redraw_window():
         SCREEN.blit(item.BG, (0, 0))
 
+
+        SCREEN.blit(item.TITLE_GAME, ((item.WIDTH - item.TITLE_GAME.get_width()) / 2, 0))
+
+
+    while True:
+
+        redraw_window()
         MENU_MOUSE_POS = pygame.mouse.get_pos()
-        SCREEN.blit(item.TITLE_GAME, ((item.WIDTH-item.TITLE_GAME.get_width())/2, 0))
 
-
+        #tạo các lựa chọn
         ONEPLAYER_BUTTON = Button(image=None, pos=(500, 400),
                                   text_input="1 Player", font=item.FontGame(75), base_color="#d7fcd4",
                                   hovering_color="White")

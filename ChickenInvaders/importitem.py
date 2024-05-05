@@ -1,4 +1,6 @@
 import pygame
+import time
+import random
 
 #Chiều dài, chiều rộng màn hình
 WIDTH, HEIGHT = 1000, 800
