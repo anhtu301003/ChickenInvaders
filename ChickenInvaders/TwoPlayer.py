@@ -1,6 +1,7 @@
 import pygame,sys
 from ButtonMenu import Button
 import mainscreen
+import importitem as item
 
 def twoplayer():
     while True:
