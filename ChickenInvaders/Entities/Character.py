@@ -11,6 +11,7 @@ class Character():
         self.cool_down_counter = 0
     def draw(self,window):
         window.blit(self.character_img,(self.x,self.y))
+
     #lấy chiều rộng
     def get_width(self):
         return self.character_img.get_width()
