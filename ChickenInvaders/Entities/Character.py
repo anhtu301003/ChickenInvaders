@@ -2,6 +2,7 @@ import pygame
 
 from ChickenInvaders.Entities.Food import Food
 from ChickenInvaders.Entities.Weapon import Weapon
+from ChickenInvaders.Entities.Gitfbox import Gift
 import ChickenInvaders.importitem as item
 
 class Character():
@@ -15,6 +16,7 @@ class Character():
         self.weapon_img = None
         self.weapons = []
         self.foods = []
+        self.gifts = []
         self.cool_down_counter = 0
 
     def draw(self,window):
@@ -41,7 +43,7 @@ class Character():
                 obj.health -= 100
                 self.weapons.remove(weapon)
 
-    def move_foods(self,vel,obj):
+    def move_food(self,vel,obj):
         self.cooldown()
         for food in self.foods:
             food.move(vel)
@@ -50,6 +52,16 @@ class Character():
             elif food.collision(obj):
                 obj.health -= 100
                 self.foods.remove(food)
+
+    def move_gifts(self,vel,obj):
+        self.cooldown()
+        for gift in self.gifts:
+            gift.move(vel)
+            if gift.off_screen(item.HEIGHT):
+                self.foods.remove(gift)
+            elif gift.collision(obj):
+                obj.health -= 100
+                self.foods.remove(gift)
 
     def shoot(self):
         if self.cool_down_counter == 0:
@@ -61,6 +73,12 @@ class Character():
         if self.cool_down_counter == 0:
             food = Food(self.x + self.character_img.get_width()/2 - 12.5,self.y + self.character_img.get_height(),item.Food1)
             self.foods.append(Food)
+            self.cool_down_counter = 1
+
+    def food_gift(self):
+        if self.cool_down_counter == 0:
+            gift = Gift(self.x + self.character_img.get_width()/2 - 12.5,self.y + self.character_img.get_height(),item.Gift)
+            self.gifts.append(gift)
             self.cool_down_counter = 1
 
     #lấy chiều rộng

@@ -1,7 +1,9 @@
+import os
+import ChickenInvaders.Resource.Music.importmusic as itemMusic
 import pygame,sys
 from ChickenInvaders.Menu.ButtonMenu import Button
 import ChickenInvaders.importitem as item
-
+from pygame import mixer
 pygame.init()
 
 #create screen
@@ -9,10 +11,10 @@ SCREEN = pygame.display.set_mode((item.WIDTH, item.HEIGHT))
 
 #set name Screen
 pygame.display.set_caption("Menu")
-
-
 def main_menu(oneplayer_function, twoplayer_function):
-
+    mixer.init()
+    mixer.music.load(itemMusic.musicwinner)
+    mixer.music.play()
     def redraw_window():
         SCREEN.blit(item.BG, (0, 0))
 

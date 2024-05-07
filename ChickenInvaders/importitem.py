@@ -1,6 +1,10 @@
+import os
+
 import pygame
+from pygame import mixer
 import time
 import random
+
 
 #Chiều dài, chiều rộng màn hình
 WIDTH, HEIGHT = 1000, 800
@@ -29,7 +33,7 @@ HERO2 = pygame.image.load("Resource/Hero/Hero.png")
 
 #Weapons
 WEAPON_NEUTRON = pygame.image.load("Resource/Weapons/Railguns/railgun1.png")
-WEAPON_NEUTRON = pygame.image.load("Resource/Weapons/Neutronguns/neutron1.png")
+WEAPON_NEUTRON2 = pygame.image.load("Resource/Weapons/Neutronguns/neutron1.png")
 
 
 #Enemies
@@ -52,3 +56,8 @@ EnemyWeapon1 = pygame.transform.scale(EnemyWeapon1,(20,30))
 #Foods
 Food1 = pygame.image.load("Resource/Foods/Food.png")
 Food2 = pygame.image.load("Resource/Foods/Food2.png")
+
+
+#Gifts
+Gift = pygame.image.load("Resource/Weapons/Neutronguns/neutrongift.png")
+
