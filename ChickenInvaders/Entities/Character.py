@@ -1,5 +1,6 @@
 import pygame
 
+from ChickenInvaders.Entities.Food import Food
 from ChickenInvaders.Entities.Weapon import Weapon
 import ChickenInvaders.importitem as item
 
@@ -13,11 +14,16 @@ class Character():
         self.character_img = None
         self.weapon_img = None
         self.weapons = []
+        self.foods = []
         self.cool_down_counter = 0
+
     def draw(self,window):
         window.blit(self.character_img,(self.x,self.y))
         for weapon in self.weapons:
             weapon.draw(window)
+        for food in self.foods:
+            food.draw(window)
+
 
     def cooldown(self):
         if self.cool_down_counter >= self.COOLDOWN:
@@ -32,14 +38,29 @@ class Character():
             if weapon.off_screen(item.HEIGHT):
                 self.weapons.remove(weapon)
             elif weapon.collision(obj):
-                obj.health -=10
+                obj.health -= 100
                 self.weapons.remove(weapon)
 
+    def move_foods(self,vel,obj):
+        self.cooldown()
+        for food in self.foods:
+            food.move(vel)
+            if food.off_screen(item.HEIGHT):
+                self.foods.remove(food)
+            elif food.collision(obj):
+                obj.health -= 100
+                self.foods.remove(food)
 
     def shoot(self):
         if self.cool_down_counter == 0:
-            weapon = Weapon(self.x + self.character_img.get_width()/2 - 12.5,self.y,self.weapon_img)
+            weapon = Weapon(self.x + self.character_img.get_width()/2 - 12.5,self.y + self.character_img.get_height(),self.weapon_img)
             self.weapons.append(weapon)
+            self.cool_down_counter = 1
+
+    def food_shoot(self):
+        if self.cool_down_counter == 0:
+            food = Food(self.x + self.character_img.get_width()/2 - 12.5,self.y + self.character_img.get_height(),item.Food1)
+            self.foods.append(Food)
             self.cool_down_counter = 1
 
     #lấy chiều rộng
@@ -49,3 +70,6 @@ class Character():
     # lấy chiều dài
     def get_height(self):
         return self.character_img.get_height()
+
+
+

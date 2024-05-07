@@ -4,8 +4,13 @@ import random
 
 #Chiều dài, chiều rộng màn hình
 WIDTH, HEIGHT = 1000, 800
+
 #Chiều dài, chiều rộng enemy
 WIDTH_ENEMY,HEIGHT_ENEMY = 100,80
+
+#Chiều dài, chiều rộng enemy
+WIDTH_BOSS,HEIGHT_BOSS = 400,300
+
 #Chiều dài,chiều rộng hero
 WIDTH_HERO,HEIGHT_HERO = 120,100
 #font chữ
@@ -37,6 +42,13 @@ Enemy2 = pygame.transform.scale(Enemy2,(WIDTH_ENEMY,HEIGHT_ENEMY))
 Enemy3 = pygame.image.load("Resource/Enemies/chicken3.png")
 Enemy3 = pygame.transform.scale(Enemy3,(WIDTH_ENEMY,HEIGHT_ENEMY))
 
+Boss = pygame.image.load("Resource/Enemies/bosschicken.png")
+Boss = pygame.transform.scale(Boss,(WIDTH_BOSS,HEIGHT_BOSS))
+
 #Enemies Weapons
 EnemyWeapon1 = pygame.image.load("Resource/Enemies/chicken_weapon1.png")
 EnemyWeapon1 = pygame.transform.scale(EnemyWeapon1,(20,30))
+
+#Foods
+Food1 = pygame.image.load("Resource/Foods/Food.png")
+Food2 = pygame.image.load("Resource/Foods/Food2.png")
