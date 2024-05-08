@@ -32,8 +32,7 @@ HERO1 = pygame.transform.scale(HERO1,(WIDTH_HERO,HEIGHT_HERO))
 HERO2 = pygame.image.load("Resource/Hero/Hero.png")
 
 #Weapons
-WEAPON_NEUTRON = pygame.image.load("Resource/Weapons/Railguns/railgun1.png")
-WEAPON_NEUTRON2 = pygame.image.load("Resource/Weapons/Neutronguns/neutron1.png")
+WEAPON_NEUTRON = pygame.image.load("Resource/Weapons/Neutronguns/neutron1.png")
 
 
 #Enemies

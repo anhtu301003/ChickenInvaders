@@ -43,8 +43,8 @@ player_vel = 5
 hero_weapon_vel = 17
 enemy_weapon_vel = 4
 enemy_vel = 1
-rows = 2
-columns = 8
+rows = 1
+columns = 7
 last_enemy_shot = pygame.time.get_ticks()
 clock = pygame.time.Clock()
 
@@ -80,7 +80,7 @@ def redraw_windowplayer(type):
 def create_enemies():
     for row in range(rows):
         for col in range(columns):
-            enemy = En.Enemy(100 + col * 100,100 + row * 70,random.choice([item.Enemy1,item.Enemy2,item.Enemy3]),100)
+            enemy = En.Enemy(100 + col * 100,100 + row * 100,random.choice([item.Enemy1,item.Enemy2,item.Enemy3]),100)
             enemies.append(enemy)
 def show_score(x,y,type):
     if type == 1:

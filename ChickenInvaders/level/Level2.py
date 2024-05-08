@@ -43,7 +43,7 @@ player_vel = 5
 hero_weapon_vel = 17
 enemy_weapon_vel = 4
 enemy_vel = 1
-rows = 1
+rows = 2
 columns = 7
 last_enemy_shot = pygame.time.get_ticks()
 clock = pygame.time.Clock()
@@ -96,6 +96,7 @@ def show_score(x,y,type):
 def Level2(type):
     global running, lives, enemies, last_enemy_shot, foods,global_score, lives1,lives2,player1_alive,player2_alive,global_score1,global_score2
     create_enemies()
+    player.score_value = lv1.global_score
     player1.score_value = lv1.global_score1
     player2.score_value = lv1.global_score2
     while running:

@@ -94,6 +94,7 @@ def show_score(x,y,type):
 def Level3(type):
     global running, lives, enemies, last_enemy_shot, foods,global_score, lives1,lives2,player1_alive,player2_alive,global_score1,global_score2
     create_enemies()
+    player.score_value = lv2.global_score
     player1.score_value = lv2.global_score1
     player2.score_value = lv2.global_score2
     while running:

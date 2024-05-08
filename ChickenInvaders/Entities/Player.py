@@ -47,14 +47,6 @@ class Player(Character):
                 self.score_value += 1
                 self.foods.remove(food)  # Nếu có va chạm, xóa thức ăn
 
-    def move_gifts(self, vel, objs):
-        self.cooldown()
-        for gift in self.gifts:
-            gift.move(vel)
-            if gift.off_screen(item.HEIGHT):
-                self.foods.remove(gift)
-            elif gift.collision(self):  # Kiểm tra va chạm giữa thức ăn và người chơi
-                self.foods.remove(gift)  # Nếu có va chạm, xóa thức ăn
 
     def shoot(self):
         if self.cool_down_counter == 0:

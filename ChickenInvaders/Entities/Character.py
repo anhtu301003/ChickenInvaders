@@ -53,15 +53,6 @@ class Character():
                 obj.health -= 100
                 self.foods.remove(food)
 
-    def move_gifts(self,vel,obj):
-        self.cooldown()
-        for gift in self.gifts:
-            gift.move(vel)
-            if gift.off_screen(item.HEIGHT):
-                self.foods.remove(gift)
-            elif gift.collision(obj):
-                obj.health -= 100
-                self.foods.remove(gift)
 
     def shoot(self):
         if self.cool_down_counter == 0:
@@ -75,11 +66,6 @@ class Character():
             self.foods.append(Food)
             self.cool_down_counter = 1
 
-    def food_gift(self):
-        if self.cool_down_counter == 0:
-            gift = Gift(self.x + self.character_img.get_width()/2 - 12.5,self.y + self.character_img.get_height(),item.Gift)
-            self.gifts.append(gift)
-            self.cool_down_counter = 1
 
     #lấy chiều rộng
     def get_width(self):
