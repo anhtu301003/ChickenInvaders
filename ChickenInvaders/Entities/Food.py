@@ -1,25 +1,15 @@
 import pygame
+import ChickenInvaders.importitem as item
+class Food(pygame.sprite.Sprite):
+    def __init__(self,x,y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = item.Food1
+        self.rect = self.image.get_rect()
+        self.rect.center = [x,y]
 
-from ChickenInvaders.Menu.Collide import collide
-
-
-class Food:
-    def __init__(self, x, y, image):
-        self.x = x
-        self.y = y
-        self.image = image
-        self.mask = pygame.mask.from_surface(self.image)
-        self.cool_down_counter = 0
-
-    def draw(self,window):
-        window.blit(self.image,(self.x,self.y))
-
-
-    def move(self,vel):
-        self.y += vel
-
-    def off_screen(self,height):
-        return not(self.y <= height and self.y >= 0)
-
-    def collision(self,obj):
-        return collide(self,obj)
+    def update(self,Player_group):
+        self.rect.y += 3
+        if self.rect.bottom < 0:
+            self.kill()
+        if pygame.sprite.spritecollide(self,Player_group,False):
+            self.kill()

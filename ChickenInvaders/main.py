@@ -1,3 +1,3 @@
-from ChickenInvaders.Menu import mainscreen, TwoPlayer, OnePlayer
+from ChickenInvaders.Menu import mainscreen, TwoPlayer, OnePlayer,Option
 
-mainscreen.main_menu(OnePlayer.oneplayer, TwoPlayer.twoplayer)
+mainscreen.main_menu()

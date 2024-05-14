@@ -1,22 +1,30 @@
 import pygame
 
-from ChickenInvaders.Menu.Collide import collide
+import ChickenInvaders.importitem as item
+from ChickenInvaders.Entities.Explosion import Explosion
+from ChickenInvaders.Entities.Food import Food
+from ChickenInvaders.Entities.Gitfbox import Gift
 
 
-class Weapon:
-    def __init__(self,x,y,img):
-        self.x = x
-        self.y = y
-        self.img = img
-        self.mask = pygame.mask.from_surface(self.img)
-    def draw(self,window):
-        window.blit(self.img,(self.x,self.y))
+class Weapon(pygame.sprite.Sprite):
+    def __init__(self,x,y,weapon_level):
+        pygame.sprite.Sprite.__init__(self)
+        self.weapon_level = weapon_level
+        self.images = [item.WEAPON_NEUTRON1,item.WEAPON_NEUTRON2,item.WEAPON_NEUTRON3]
+        self.image = self.images[self.weapon_level-1]
+        self.rect = self.image.get_rect()
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect.center = [x,y]
 
-    def move(self,vel):
-        self.y += vel
+    def update(self,Enemy_group,Food_group,Explosion_group,Gift_group):
+        self.rect.y -= 5
+        if self.rect.bottom < 0:
+            self.kill()
+        if pygame.sprite.spritecollide(self,Enemy_group,True):
+            self.kill()
+            explosion = Explosion(self.rect.centerx ,self.rect.y, 5)
+            Explosion_group.add(explosion)
+            food = Food(self.rect.centerx,self.rect.top)
+            Food_group.add(food)
 
-    def off_screen(self,height):
-        return not(self.y <= height and self.y >= 0)
 
-    def collision(self,obj):
-        return collide(self,obj)

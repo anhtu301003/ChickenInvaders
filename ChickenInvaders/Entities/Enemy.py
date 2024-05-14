@@ -1,25 +1,23 @@
 import pygame
 import ChickenInvaders.importitem as item
-from ChickenInvaders.Entities.Character import Character
 import random
 
-from ChickenInvaders.Entities.Food import Food
+from ChickenInvaders.Entities.Weapon import Weapon
 
 
-class Enemy(Character):
-    def __init__(self, x, y, character_img,health):
-        super().__init__(x, y, health)
-        self.weapon_img = item.EnemyWeapon1
-        self.character_img = character_img
-        self.health = health
-        self.mask = pygame.mask.from_surface(self.character_img)
-        self.direction = 1 #hướng di chuyển 1 là phải -1 là trái
-        self.weapons = []
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = random.choice([item.Enemy1,item.Enemy2,item.Enemy3])
+        self.rect = self.image.get_rect()
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect.center = [x, y]
+        self.move_counter = 0
+        self.move_direction = 1
 
-    def move(self, vel):
-        self.x += vel * self.direction
-        if self.x + self.get_width() > item.WIDTH or self.x < 0:  # Kiểm tra nếu đến mép màn hình
-            self.direction *= -1  # Đảo hướng di chuyển
-
-
-
+    def update(self):
+        self.rect.x += self.move_direction
+        self.move_counter += 1
+        if self.rect.right > item.WIDTH or self.rect.left < 0:
+            self.move_direction *= -1
+            self.rect.y += self.rect.height
