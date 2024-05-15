@@ -33,19 +33,19 @@ def main_menu():
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
         #tạo các lựa chọn
-        ONEPLAYER_BUTTON = Button(image=None, pos=(500, 400),
+        ONEPLAYER_BUTTON = Button(image=None, pos=(500, 300),
                                   text_input="1 Player", font=item.FontGame(75), base_color="#d7fcd4",
                                   hovering_color="White")
 
-        TWOPLAYER_BUTTON = Button(image=None, pos=(500, 500),
+        TWOPLAYER_BUTTON = Button(image=None, pos=(500, 400),
                                   text_input="2 Player", font=item.FontGame(75), base_color="#d7fcd4",
                                   hovering_color="White")
 
-        OPTION_BUTTON = Button(image=None, pos=(500, 600),
+        OPTION_BUTTON = Button(image=None, pos=(500, 500),
                                   text_input="Option", font=item.FontGame(75), base_color="#d7fcd4",
                                   hovering_color="White")
 
-        QUIT_BUTTON = Button(image=None, pos=(500, 700),
+        QUIT_BUTTON = Button(image=None, pos=(500, 600),
                              text_input="QUIT", font=item.FontGame(75), base_color="#d7fcd4", hovering_color="White")
 
 

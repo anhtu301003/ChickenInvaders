@@ -3,7 +3,6 @@ import ChickenInvaders.Menu.mainscreen as mainscreen
 import ChickenInvaders.importitem as item
 import ChickenInvaders.Entities.Player as Pl
 import ChickenInvaders.Entities.Enemy as En
-from ChickenInvaders.Menu.Collide import collide
 import random
 import ChickenInvaders.level.Level1 as Lv1
 def twoplayer(type=2):

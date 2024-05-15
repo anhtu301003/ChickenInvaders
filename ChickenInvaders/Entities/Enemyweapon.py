@@ -12,5 +12,9 @@ class Enemyweapon(pygame.sprite.Sprite):
         self.rect.y += 2
         if self.rect.top > item.HEIGHT:
             self.kill()
-        if pygame.sprite.spritecollide(self,Player_group,True,pygame.sprite.collide_mask):
+        if pygame.sprite.spritecollide(self,Player_group,False,pygame.sprite.collide_mask):
+            for player in pygame.sprite.spritecollide(self,Player_group,False,pygame.sprite.collide_mask):
+                player.hit(100)
             self.kill()
+            # reduce spaceship health
+

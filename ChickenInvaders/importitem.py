@@ -7,7 +7,7 @@ import random
 
 
 #Chiều dài, chiều rộng màn hình
-WIDTH, HEIGHT = 1000, 800
+WIDTH, HEIGHT = 1000, 700
 
 #Chiều dài, chiều rộng enemy
 WIDTH_ENEMY,HEIGHT_ENEMY = 100,80
@@ -83,3 +83,7 @@ hardmode= pygame.image.load(os.path.join(current_dir,"Resource/Items/hard.png"))
 easymode = pygame.transform.scale(easymode,(100,50))
 mediummode = pygame.transform.scale(mediummode,(100,50))
 hardmode = pygame.transform.scale(hardmode,(100,50))
+
+
+unmute = pygame.image.load(os.path.join(current_dir,"Resource/Items/musicoff.png"))
+mute = pygame.image.load(os.path.join(current_dir,"Resource/Items/musicon.png"))

@@ -11,5 +11,8 @@ class Food(pygame.sprite.Sprite):
         self.rect.y += 3
         if self.rect.bottom < 0:
             self.kill()
-        if pygame.sprite.spritecollide(self,Player_group,False):
+        collided_players = pygame.sprite.spritecollide(self, Player_group, False)
+        for player in collided_players:
+            player.score += 1  # Tăng điểm của người chơi
             self.kill()
+

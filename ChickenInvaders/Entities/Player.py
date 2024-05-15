@@ -11,11 +11,12 @@ class Player(pygame.sprite.Sprite):
         self.image = item.HERO1
         self.rect = self.image.get_rect()
         self.rect.center = [x,y]
+        self.score = 0
         self.mask = pygame.mask.from_surface(self.image)
         self.last_shot = pygame.time.get_ticks()
         self.weapon_level = 1
 
-    def update(self,Player_Weapon_group,Gift_group):
+    def update(self,Player_Weapon_group,Gift_group,Enemy_group,Enemy_weapon_group,Food_group):
         speed = 8
         cooldown = 500
 
@@ -38,3 +39,26 @@ class Player(pygame.sprite.Sprite):
 
         if pygame.sprite.spritecollide(self,Gift_group,True):
             self.weapon_level += 1
+
+        if pygame.sprite.spritecollide(self,Food_group,True):
+            self.score += 1
+
+
+        if pygame.sprite.spritecollide(self,Enemy_group,True):
+            self.health -= 100
+            self.kill()
+
+
+    def hit(self, damage):  # Thêm phương thức hit
+        self.health -= damage
+        if self.health <= 0:
+            self.kill()
+
+    def get_attribute(self):
+        return {
+            'score': self.score,
+            'x': self.rect.centerx,
+            'y': self.rect.centery,
+            'health': self.health,
+            'weapon_level': self.weapon_level
+        }

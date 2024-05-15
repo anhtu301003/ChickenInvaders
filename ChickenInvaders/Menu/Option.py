@@ -30,7 +30,26 @@ def change_game_mode(direction):
 
 def display_game_mode_image():
     current_image = game_mode_images[current_mode_index]
-    mainscreen.SCREEN.blit(current_image, (570, 500))
+    mainscreen.SCREEN.blit(current_image, (570, 400))
+
+# Định nghĩa các biến toàn cục
+is_sound_on = True  # Ban đầu âm thanh đang được bật
+
+def toggle_sound():
+    global is_sound_on
+    is_sound_on = not is_sound_on
+    if is_sound_on:
+        # Bật âm thanh
+        pygame.mixer.unpause()
+    else:
+        # Tắt âm thanh
+        pygame.mixer.pause()
+
+def display_sound_button():
+    if is_sound_on:
+        mainscreen.SCREEN.blit(item.mute, (550, 280))
+    else:
+        mainscreen.SCREEN.blit(item.unmute, (550, 280))
 
 def Option():
     global game_running
@@ -42,13 +61,16 @@ def Option():
         OPTION_TEXT_WIDTH = OPTIONS_TEXT.get_width()
         mainscreen.SCREEN.blit(OPTIONS_TEXT, ((item.WIDTH-OPTION_TEXT_WIDTH)/2, 100))
         display_game_mode_image()
+        SoundText = item.FontGame(50).render("SOUND:", True, "White")
+
+        display_sound_button()
+        mainscreen.SCREEN.blit(SoundText, (300, 300))
         GamemodeText = item.FontGame(50).render("GAME MODE:", True, "White")
-        GamemodeText_WIDTH = GamemodeText.get_width()
-        mainscreen.SCREEN.blit(GamemodeText, (250, 500))
-        mainscreen.SCREEN.blit(item.NextLeft, (500, 500))
-        mainscreen.SCREEN.blit(item.NextRight, (700, 500))
+        mainscreen.SCREEN.blit(GamemodeText, (250, 400))
+        mainscreen.SCREEN.blit(item.NextLeft, (500, 400))
+        mainscreen.SCREEN.blit(item.NextRight, (700, 400))
         OPTIONS_BACK = Button(image=None, pos=(500, 650),
-                              text_input="BACK", font=item.FontGame(75), base_color="Black", hovering_color="Green")
+                              text_input="BACK", font=item.FontGame(75), base_color="White", hovering_color="Green")
         OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
         OPTIONS_BACK.update(mainscreen.SCREEN)
         for event in pygame.event.get():
@@ -66,4 +88,7 @@ def Option():
                         OPTIONS_MOUSE_POS):
                     change_game_mode("right")
                     selected_game_mode = game_modes[current_mode_index]
+                elif pygame.Rect(550, 280, item.unmute.get_width(), item.unmute.get_height()).collidepoint(
+                        OPTIONS_MOUSE_POS):
+                    toggle_sound()
         pygame.display.update()
